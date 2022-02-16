@@ -16,8 +16,8 @@ provider "github" {
   owner = "bocalettirocco"
 }
 
-resource "github_repository" "example" {
-  name        = "example"
-  description = "My awesome codebase"
+resource "github_repository" "repo" {
+  name = "repo"
+  description = "test repo"
   visibility = "public"
 }
