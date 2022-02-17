@@ -2,3 +2,4 @@
 *.tfstate.backup
 *.hcl
 .terraform
+*.tfstate.lock.info
