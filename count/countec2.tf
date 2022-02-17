@@ -17,11 +17,18 @@ data "aws_ami" "ubuntu-latest" {
   }
 }
 
-resource "aws_instance" "myec2" {
+variable "names" {
+  type = list
+  default = ["dev", "qa", "uat"]
+}
+
+resource "aws_instance" "bastion" {
   ami = data.aws_ami.ubuntu-latest.id
   instance_type = "t3.nano"
+
   tags = {
-    Name = "myec2-${count.index}"
+    Name = format("%s%s","bastion-",var.names[count.index])
   }
+
   count = 3
 }
