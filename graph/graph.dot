@@ -1,0 +1,18 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.ip (expand)" [label = "aws_eip.ip", shape = "box"]
+		"[root] aws_instance.myec2 (expand)" [label = "aws_instance.myec2", shape = "box"]
+		"[root] aws_security_group.allow_tls (expand)" [label = "aws_security_group.allow_tls", shape = "box"]
+		"[root] data.aws_ami.ubuntu-latest (expand)" [label = "data.aws_ami.ubuntu-latest", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] aws_eip.ip (expand)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] data.aws_ami.ubuntu-latest (expand)"
+		"[root] aws_security_group.allow_tls (expand)" -> "[root] aws_eip.ip (expand)"
+		"[root] data.aws_ami.ubuntu-latest (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group.allow_tls (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
